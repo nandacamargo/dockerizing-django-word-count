@@ -1,0 +1,20 @@
+<html>
+<head>
+    <style>
+        h2 {text-align: center;}
+        a {text-align: center;}
+        body {background-color: rgb(255, 135, 80);}
+    </style>
+</head>
+
+<body>
+    <h2 text-align: center>Your text has {{ words_count }} words.</h2>
+    
+    <b>This is your text:</b>
+    {{ input_text }}
+    
+    <br><br><br>
+    
+    <a href="{% url 'home' %}">Return to homepage</a>
+</body>
+</html>

@@ -1,0 +1,26 @@
+version: "3.3"
+   
+services:
+  web:
+    build: .
+    image: web_wordcount
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    networks:
+      - wordcount_network
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 5
+        window: 30s
+
+
+networks:
+    wordcount_network:

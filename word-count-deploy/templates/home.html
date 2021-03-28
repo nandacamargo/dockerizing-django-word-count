@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <style>
+            h1 {text-align: center;}
+            div { text-align: center; }
+            body {background-color: rgb(255, 135, 80);}
+        </style>
+    </head>
+
+    <body>
+        <h1> Welcome to Word Count Page!</h1>
+        <br>
+	
+        {% block content %}
+        <div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="document">
+                <button type="submit">Upload file</button>
+            </form>
+            {% if url %}
+                <p>Uploaded file: <a href="{{ url }}">{{ url }}</a></p>
+    
+                <form action="{% url 'count' %}">
+                    <input type="submit" value="Count the words" />
+                </form>
+            {% endif %}
+        </div>        
+        {% endblock %}
+    </body>
+</html>

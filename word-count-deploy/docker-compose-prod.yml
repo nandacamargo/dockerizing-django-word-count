@@ -1,0 +1,23 @@
+version: "3.3"
+   
+services:
+  web:
+    build: .
+    image: web_wordcount
+    command: python manage.py runserver ${PROD_SERVER}:8080
+    ports:
+      - "8080:8080"
+    enviroment:
+      PRODUCTION: 'true'
+    networks:
+      - wordcount_network
+    deploy:
+      replicas: 4
+      update_config:
+        parallelism: 4
+      restart_policy:
+        condition: always
+
+
+networks:
+    wordcount_network:
