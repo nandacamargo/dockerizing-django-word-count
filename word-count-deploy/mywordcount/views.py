@@ -28,10 +28,11 @@ def count_page(request):
 
     if (file_to_read != None):
         user_input = read_file(file_to_read)
-        words_count = len(user_input)
-    
+
         for i in range(len(user_input)):
             full_text += user_input[i]
+
+        words_count = len(full_text.split())
 
     return render(request, '../templates/count.html', 
     { 'input_text' : full_text, 'words_count' : words_count })
